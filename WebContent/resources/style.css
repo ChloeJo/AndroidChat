@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+/*---------chat window---------------*/
+.container{
+    max-width:900px;
+}
+.inbox_msg {
+	border: 1px solid #ddd;
+	clear: both;
+	overflow: hidden;
+}
+.top_spac {
+	margin: 20px 0 0;
+}
+.incoming_msg_nick {
+	display: inline-block;
+	width: 10%;
+}
+.received_msg {
+	display: inline-block;
+	padding: 0 0 0 10px;
+	vertical-align: top;
+	width: 92%;
+}
+.newUser{
+    margin: 26px 0 26px;
+}
+.notice_newUser{
+    background: #abc4d650 none repeat scroll 0 0;
+    text-align: center;
+    width: 80%;
+    border-radius: 15px 15px 15px 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: auto;
+}
+.newUser_nickname {
+	color: #646464;
+	font-size: 14px;
+    font-weight: bold;
+}
+.notice {
+	color: #646464;
+	font-size: 14px;
+	margin: 0;	
+	
+}
+.time_date {
+	color: #747474;
+ 	display: inline-block; 
+	font-size: 12px;
+ 	margin: 8px 10px 0;
+}
+.received_withd_msg {
+	width: 57%;
+}
+.mesgs{
+	float: left;
+	padding: 30px 15px 0 25px;
+	width:100%;
+}
+.sent_msg p {
+    background: #0465ac none repeat scroll 0 0;
+	border-radius: 12px 15px 15px 0;
+	font-size: 14px;
+	margin: 0;
+	color: #fff;
+	padding: 5px 10px 5px 12px;
+    float: right;
+    display: inline-block;
+}
+.outgoing_msg {
+	overflow: hidden;
+	margin: 5px 0 5px;
+}
+.incoming_msg {
+    overflow: hidden;
+    margin: 5px 0 5px;
+}
+.sent_msg {
+	float: right;
+    margin-right: 0;
+}
+.input_msg_write input {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+	border: medium none;
+	color: #4c4c4c;
+	font-size: 15px;
+	min-height: 48px;
+	width: 100%;
+	outline:none;
+}
+.type_msg {
+	border-top: 1px solid #c4c4c4;
+	position: relative;
+}
+.received_withd_msg p {
+	background: #ebebeb none repeat scroll 0 0;
+	border-radius: 0 15px 15px 15px;
+	color: #646464;
+	font-size: 14px;
+	margin: 0;
+	padding: 5px 10px 5px 12px;
+    display: inline-block;
+}
+.msg_send_btn {
+	background: #05728f none repeat scroll 0 0;
+	border:none;
+	border-radius: 50%;
+	color: #fff;
+	cursor: pointer;
+	font-size: 15px;
+	height: 33px;
+	position: absolute;
+	right: 0;
+	top: 11px;
+	width: 33px;
+}
+.messaging {
+	padding: 0 0 0 0;
+}
+.msg_history {
+	height: 516px;
+	overflow-y: auto;
+}
+textarea{
+    resize: none;
+    width: 95%;
+    border: none;
+}
