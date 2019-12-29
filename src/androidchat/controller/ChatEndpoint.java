@@ -16,6 +16,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import com.google.common.collect.EvictingQueue;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import androidchat.dto.ChatDTO;
@@ -26,7 +27,7 @@ import androidchat.utils.TranslationUtils;
 public class ChatEndpoint {
 	
 	TranslationUtils tUtils = new TranslationUtils();
-	
+	JsonObject obj = new JsonObject();
 	
 	private String xssProtect(String text) {
 		text = text.replaceAll("&", "&amp;");
@@ -44,6 +45,14 @@ public class ChatEndpoint {
 		System.out.println("client is now connected.");
 		clients.add(session);
 		this.hSession = (HttpSession)config.getUserProperties().get("session");
+		String nickname = (String) this.hSession.getAttribute("nickname");
+		obj.addProperty("welcome", nickname);
+		
+		synchronized(clients) {
+			for(Session client : clients) {
+				client.getBasicRemote().sendText(obj.toString());
+			}
+		}
 	}
 	
 	@OnMessage
@@ -59,7 +68,7 @@ public class ChatEndpoint {
 		ChatDTO dto = new ChatDTO(nickname, originMsg, translatedMsg);
 		msgs.add(dto);
 		System.out.println(msgs);
-		JsonObject obj = new JsonObject();
+
 			
 		synchronized(clients) {
 			for(Session client : clients) {
@@ -71,8 +80,6 @@ public class ChatEndpoint {
 					System.out.println(obj.toString());
 					client.getBasicRemote().sendText(obj.toString());
 					
-//					client.getBasicRemote().sendText(xssProtect("{\"nickname\":\"me\", \"originMsg\" : \"" + originMsg 
-//							+ "\", \"translatedMsg\" : \"" + translatedMsg + "\"}"));
 				}else {
 					System.out.println("받는 메세지 ");
 					obj.addProperty("nickname", nickname);
@@ -80,8 +87,6 @@ public class ChatEndpoint {
 					obj.addProperty("translatedMsg", translatedMsg);
 					System.out.println(obj.toString());
 					client.getBasicRemote().sendText(obj.toString());
-//					client.getBasicRemote().sendText(xssProtect("{\"nickname\":\"" + nickname + "\", \"originMsg\" : \"" + originMsg 
-//							+ "\", \"translatedMsg\" : \"" + translatedMsg + "\"}"));
 				}
 			}
 		}
@@ -90,7 +95,7 @@ public class ChatEndpoint {
 	@OnClose
 	public void handleClose(Session session) {
 		clients.remove(session);
-		System.out.println("client is not disconncted.");
+		System.out.println("client is now disconncted.");
 	}
 	
 	@OnError

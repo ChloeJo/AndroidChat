@@ -128,3 +128,7 @@ textarea{
     width: 95%;
     border: none;
 }
+#new_msg{
+	border: none;
+	background-color: none;
+}

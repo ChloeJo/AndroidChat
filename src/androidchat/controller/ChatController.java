@@ -35,6 +35,10 @@ public class ChatController extends HttpServlet {
 			System.out.println(nickname);
 			request.getSession().setAttribute("nickname", nickname);
 			response.sendRedirect("talkEnglish.jsp");
+		}else if(cmd.contentEquals("/close.chat")) {
+			String nickname = (String)request.getSession().getAttribute("nickname");
+			System.out.println("세션 종료 : " + nickname);
+			request.getSession().removeAttribute("nickname");
 		}
 	}
 
