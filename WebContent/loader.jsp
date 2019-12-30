@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no">
 <title>Loading...</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 
 </head>
 <body>
-	<div id="loader" class="col-12 col-md-4">
+	<div id="loader" class="col-12">
 		<div id="shadow"></div>
 		<div id="box"></div>
 	</div>
@@ -25,15 +25,15 @@
 	</div>
 	
 	<form id="frmModal" action="${pageContext.request.contextPath}/chat.chat" method="post" >
-		<div class="modal" id="nickModal" tabindex="-1" role="dialog">
-			<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal" id="nickModal" role="dialog">
+			<div class="modal-dialog col-12" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" style="font-weight: bold;">닉네임 등록</h5>
 					</div>
 					<div class="modal-body" id="nickDiv">
 						<input type="text" id="nickname" name="nickname"
-							placeholder="채팅에서 사용할 닉네임을 입력해 주세요.">
+							placeholder="닉네임을 입력해 주세요.">
 						<p id="result" hidden></p>
 					</div>
 					<div class="modal-footer">

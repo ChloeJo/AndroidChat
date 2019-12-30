@@ -34,11 +34,12 @@
 	</div>
   </div>
 </div>
+
 <script>
 	var clients = [];
 	var currentUser = document.getElementById("currentUser");
 	var currentTime = document.getElementById("currentTime");
-	var webSocket = new WebSocket("ws://221.146.168.33/AndroidChat/websocket");
+	var webSocket = new WebSocket("ws://192.168.60.13/AndroidChat/websocket");
 	
 	webSocket.onmessage = function(e){ 
         var currentTime = formatAMPM(new Date());
@@ -66,6 +67,7 @@
                 	    "</div>"+
                 	    "</div>"
             	)
+            	callAndroid();
        		}
         	if(clientsList !== -1 && data.nickname !== undefined){
         		showMsg(data, translatedMsg, currentTime);
@@ -112,25 +114,28 @@
     	if(data.nickname == "me"){
             console.log("내가 보낸 메세지");
             if(currentUser.innerHTML == data.nickname){
-            	if($('.time_date:last').html() !== currentTime){
+            	if($('.time_date:last').html() !== currentTime){            		
             		$("#msg_history").append("<div class='outgoing_msg'>" +
                             "<div class='sent_msg'>" +
                             "<p>"+translatedMsg+"</p>" +
                             "<span class='time_date'>"+currentTime+"</span>" +
                             "</div></div>");
-            	}else{
+            		callAndroid();
+            	}else{            		
             		$("#msg_history").append("<div class='outgoing_msg'>" +
                             "<div class='sent_msg'>" +
                             "<p>"+translatedMsg+"</p>" +
                             "</div></div>");
+            		callAndroid();
             	}
-            }else{
+            }else{            	
             	$("#msg_history").append("<div class='outgoing_msg'>" +
                         "<div class='sent_msg'>" +
                         "<p>"+translatedMsg+"</p>" +
                         "<span class='time_date'>"+currentTime+"</span>" +
                         "</div></div>");
      			currentUser.innerHTML = data.nickname;
+     			callAndroid();
             }
         }else{
             console.log("받은 메세지");
@@ -142,12 +147,14 @@
                             "<p>"+translatedMsg+"</p>" +
                             "<span class='time_date'>"+currentTime+"</span>" +
                             "</div></div></div>");
+            		callAndroid();
             	}else{
             		$("#msg_history").append("<div class='incoming_msg'>" +
                             "<div class='received_msg'>" + 
                             "<div class='received_withd_msg'>" +
                             "<p>"+translatedMsg+"</p>" +
                             "</div></div></div>");
+            		callAndroid();
             	}
             }else{
             	$("#msg_history").append("<div class='incoming_msg'>" +
@@ -158,6 +165,7 @@
                         "<span class='time_date'>"+currentTime+"</span>" +
                         "</div></div></div>");
      			currentUser.innerHTML = data.nickname;
+     			callAndroid();
             }
         }
     }
@@ -171,7 +179,9 @@
         var strTime = hours + ':' + minutes + ' ' + ampm;
         return strTime;
     };
-	
+    function callAndroid(){
+        window.Android.callMethodName();
+    }
 </script>
 </body>
 </html>
